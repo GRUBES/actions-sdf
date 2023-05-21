@@ -16,3 +16,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'oracle'
+      - name: Install package
+        run: npm ci --acceptsuitecloudsdklicense
+      - name: Run unit tests
+        run: npm test
