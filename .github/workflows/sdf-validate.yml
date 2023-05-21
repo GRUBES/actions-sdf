@@ -1,0 +1,18 @@
+name: SDF Validation
+run-name: validate
+on: [push]
+jobs:
+  sdf-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+      - name: Install JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'oracle'
