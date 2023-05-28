@@ -2,6 +2,7 @@
   "name": "actions-sdf",
   "version": "0.1.0",
   "scripts": {
+    "deploy": "suitecloud project:deploy",
     "test": "jest",
     "validate": "suitecloud project:deploy --dryrun"
   },
