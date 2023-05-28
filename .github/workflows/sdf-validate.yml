@@ -21,7 +21,12 @@ jobs:
         run: npm ci --acceptsuitecloudsdklicense
       - name: Run unit tests
         run: npm test
-      - name: Authenticate project against ${{ env.NS_ACCOUNT_ID }}
-        run: ./node_modules/bin/suitecloud account:savetoken --account ${{ env.NS_ACCOUNT_ID }} --authid ${{ env.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
+      - name: Where is the variable?
+        run: |
+          echo none:$NS_ACCOUNT_ID
+          echo vars:${{ vars.NS_ACCOUNT_ID }}
+          echo env:${{ env.NS_ACCOUNT_ID }}
+      - name: Authenticate project against ${{ vars.NS_ACCOUNT_ID }}
+        run: ./node_modules/.bin/suitecloud account:savetoken --account ${{ env.NS_ACCOUNT_ID }} --authid ${{ env.NS_ACCOUNT_ID }} --tokenid ${{ secrets.NS_TOKEN_ID }} --tokensecret ${{ secrets.NS_TOKEN_SECRET }}
       - name: Validate project
         run: npm run validate
