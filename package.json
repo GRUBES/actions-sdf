@@ -7,9 +7,9 @@
     "validate": "suitecloud project:deploy --dryrun"
   },
   "devDependencies": {
-    "jest": "^29",
-    "@types/jest": "^29",
+    "@oracle/suitecloud-cli": "^1",
     "@oracle/suitecloud-unit-testing": "^1",
-    "@oracle/suitecloud-cli": "^1"
+    "@types/jest": "^29",
+    "jest": "^29"
   }
 }
