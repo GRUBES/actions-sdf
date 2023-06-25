@@ -1,10 +1,12 @@
 name: SDF Validation
 run-name: validate
-on: [push]
+on:
+  push:
+    branches: [main, articles/*]
 jobs:
   sdf-deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'sandbox' }}
     needs: [unit-test, sdf-validate]
     steps:
       - uses: actions/checkout@v3
@@ -17,7 +19,7 @@ jobs:
         run: npm run deploy
   sdf-validate:
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'sandbox' }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/sdf-install
@@ -29,7 +31,7 @@ jobs:
         run: npm run validate
   unit-test:
     runs-on: ubuntu-latest
-    environment: production
+    environment: ${{ github.ref == 'refs/heads/main' && 'production' || 'sandbox' }}
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/sdf-install
